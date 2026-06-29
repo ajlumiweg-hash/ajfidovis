@@ -1,44 +1,75 @@
+import heroVideo from "../assets/videos/hero-video.mp4";
+
 function Hero() {
   return (
-    <section className="min-h-screen bg-gradient-to-br from-[#050816] via-[#0f172a] to-[#1e293b] text-white flex items-center">
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 gap-10 items-center">
+    <section className="relative min-h-screen flex items-center justify-start">
+        
+     <video
+      autoPlay
+      muted
+      loop
+      playsInline
+      className="absolute inset-0 w-full h-full object-cover"
+     >
+       <source src={heroVideo} type="video/mp4" />
+     </video> 
 
-        {/* Left Side */}
-        <div>
-          <p className="text-blue-400 font-semibold mb-3">
-            AJFIDOVIS
-          </p>
+      <div className="absolute inset-0 bg-black/45"></div>
 
-          <h1 className="text-5xl md:text-7xl font-bold leading-tight">
+
+     <div className="relative z-10 h-screen flex items-center w-full px-6 md:px-12 xl:px-24">
+       
+        <div className="w-full max-w-5xl">
+
+          <h1 
+            className="text-white font-light leading-[0.95]"
+            style={{
+              fontSize: "clamp(3rem, 7vw, 10rem)",
+            }}
+          >
             Building The
-            <span className="text-blue-500"> Future</span>
+            <br />
+            <span className="text-blue-500 font-bold"> Future</span>
           </h1>
 
-          <p className="text-gray-300 mt-6 text-lg">
+
+
+          <p  
+              className="text-gray-300 mt-6 max-w-xl leading-relaxed"
+              style={{
+                fontSize: "clamp(1rem, 1.6vw, 1.9rem)",
+              }}
+          >
             We build intelligent software, AI products,
             cloud solutions and future technologies
             for businesses around the world.
           </p>
 
-          <div className="flex gap-4 mt-8">
-            <button className="bg-blue-600 hover:bg-blue-700 px-6 py-3 rounded-lg font-medium transition">
+
+
+          <div className="flex flex-col sm:flex-row gap-4 mt-10">
+            <button
+              className="bg-blue-600 hover:bg-blue-700 rounded-full text-white font-semibold shadow-lg"
+              style={{
+                padding: "clamp(0.8rem, 1vw, 1.2rem) clamp(1.5rem, 2vw, 3rem)",
+                fontSize: "clamp(1rem, 2vw, 2.2rem)",
+              }}
+            >
               Explore Services
             </button>
 
-            <button className="border border-white px-6 py-3 rounded-lg hover:bg-white hover:text-black transition">
+            <button
+              className="border border-white/40 rounded-full text-white hover:bg-white hover:text-black transition"
+              style={{
+                padding: "clamp(0.8rem, 1vw, 1.2rem) clamp(1.5rem, 2vw, 3rem)",
+                fontSize: "clamp(1rem, 2vw, 2.2rem)",
+              }}
+            >
               Contact Us
             </button>
           </div>
         </div>
 
-        {/* Right Side */}
-        <div className="flex justify-center">
-          <img
-            src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3"
-            alt="Developer"
-            className="rounded-3xl shadow-2xl w-full max-w-lg"
-          />
-        </div>
 
       </div>
     </section>

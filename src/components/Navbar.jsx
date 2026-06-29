@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import logo from "../assets/logos/logo.png";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -14,26 +15,51 @@ function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 bg-[#050816]/80 backdrop-blur-md border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full z-50 ">
+      <div className="w-full px-6 lg:px-12 py-4 flex justify-between items-center">
 
         {/* Logo */}
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold">
-            A
-          </div>
 
-          <h1 className="text-white text-xl font-bold">
-            AJFIDOVIS
+        <div 
+          className="flex items-center"
+          style={{
+            gap: "clamp(0.4rem, 0.8vw, 1rem)",
+          }}     
+        >
+          <img
+            src = {logo}
+            alt = "AJFIDOVIS LOGO"
+            style={{
+              width: "clamp(40px, 4vw, 80px)",
+              height: "clamp(40px, 4vw, 80px)",
+            }}
+          />
+          
+
+          <h1
+            className="text-white font-extrabold tracking-wide"
+            style={{
+              fontSize: "clamp(1rem, 2vw, 3rem)",
+            }}
+          >
+            FIDOVIS
           </h1>
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden md:flex gap-8 text-gray-300">
+        <ul
+          className="hidden lg:flex text-white font-medium"
+          style={{
+            gap: "clamp(1.5rem, 2vw, 3rem)",
+          }}
+        >
           {navLinks.map((link) => (
             <li
               key={link}
               className="cursor-pointer hover:text-blue-400 transition duration-300"
+              style={{
+                fontSize: "clamp(1rem, 1.5vw, 1.8rem)",
+              }}
             >
               {link}
             </li>
@@ -41,7 +67,13 @@ function Navbar() {
         </ul>
 
         {/* Login Button */}
-        <button className="hidden md:block bg-blue-600 hover:bg-blue-700 px-5 py-2 rounded-lg text-white transition">
+        <button
+            className="hidden lg:block bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition"
+            style={{
+              padding: "clamp(0.6rem, 1vw, 1rem) clamp(1.2rem, 2vw, 2rem)",
+              fontSize: "clamp(0.9rem, 1vw, 1.1rem)",
+            }}
+        >
           Login
         </button>
 
