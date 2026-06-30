@@ -7,79 +7,77 @@ function Navbar() {
 
   const navLinks = [
     "Home",
-    "About",
-    "Services",
+    "Solutions",
     "Products",
+    "Technologies",
     "Portfolio",
-    "Contact",
+    "About",
+    "Careers",
+    "Contacts",
   ];
 
   return (
-    <nav className="fixed top-0 left-0 w-full z-50 ">
-      <div className="w-full px-6 lg:px-12 py-4 flex justify-between items-center">
+    <nav className="fixed top-0 left-0 w-full z-50 backdrop-blur-xl bg-black/20 border-b border-white/10">
+      <div className="max-w-[1600px] mx-auto px-4 sm:px-6 lg:px-10 py-4 flex justify-between items-center">
 
         {/* Logo */}
 
         <div 
-          className="flex items-center"
+          className="flex items-center shrink-0"
           style={{
             gap: "clamp(0.4rem, 0.8vw, 1rem)",
           }}     
         >
           <img
-            src = {logo}
-            alt = "AJFIDOVIS LOGO"
-            style={{
-              width: "clamp(40px, 4vw, 80px)",
-              height: "clamp(40px, 4vw, 80px)",
-            }}
+            src={logo}
+            alt="AJFIDOVIS LOGO"
+            className="w-10 h-10 md:w-12 md:h-12 xl:w-14 xl:h-14"
           />
           
 
-          <h1
-            className="text-white font-extrabold tracking-wide"
-            style={{
-              fontSize: "clamp(1rem, 2vw, 3rem)",
-            }}
-          >
-            FIDOVIS
+          <h1 className="text-white font-bold tracking-wide text-lg md:text-xl xl:text-2xl">
+            AJFIDOVIS
           </h1>
         </div>
 
         {/* Desktop Menu */}
-        <ul
-          className="hidden lg:flex text-white font-medium"
-          style={{
-            gap: "clamp(1.5rem, 2vw, 3rem)",
-          }}
-        >
-          {navLinks.map((link) => (
-            <li
-              key={link}
-              className="cursor-pointer hover:text-blue-400 transition duration-300"
-              style={{
-                fontSize: "clamp(1rem, 1.5vw, 1.8rem)",
-              }}
-            >
-              {link}
-            </li>
-          ))}
-        </ul>
 
-        {/* Login Button */}
-        <button
-            className="hidden lg:block bg-blue-600 hover:bg-blue-700 rounded-lg text-white transition"
-            style={{
-              padding: "clamp(0.6rem, 1vw, 1rem) clamp(1.2rem, 2vw, 2rem)",
-              fontSize: "clamp(0.9rem, 1vw, 1.1rem)",
-            }}
-        >
-          Login
-        </button>
+        <div className="hidden xl:flex items-center">
+          <ul className="flex items-center gap-6 xl:gap-8 text-white text-sm xl:text-base font-medium">
+            {navLinks.map((link) => (
+              <li
+                key={link}
+                className="cursor-pointer hover:text-cyan-400 transition duration-300"
+              >
+                {link}
+              </li>
+            ))}
+          </ul>
+        </div>
+
+
+        {/* GetStarted */}
+
+        <div className="hidden xl:flex items-center gap-3 xl:gap-5 shrink-0">
+
+          <button className="text-white hover:text-cyan-400">
+            🌐 EN
+          </button>
+
+          <button className="text-white hover:text-cyan-400">
+            🌙
+          </button>
+
+          <button className="bg-gradient-to-r from-blue-600 to-cyan-500 px-4 md:px-5 xl:px-6 py-2 xl:py-3 rounded-full text-white font-semibold hover:scale-105 transition text-sm xl:text-base">
+            Get Started
+          </button>
+
+        </div>
+
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-white"
+          className="xl:hidden text-white p-2"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
@@ -88,14 +86,14 @@ function Navbar() {
 
       {/* Mobile Menu */}
       {isOpen && (
-        <div className="md:hidden bg-[#050816] border-t border-gray-800">
+        <div className="xl:hidden bg-black/95 backdrop-blur-xl border-t border-white/10">
           <ul className="flex flex-col items-center py-5 gap-4 text-white">
             {navLinks.map((link) => (
               <li key={link}>{link}</li>
             ))}
 
             <button className="bg-blue-600 px-5 py-2 rounded-lg">
-              Login
+              Get Started
             </button>
           </ul>
         </div>

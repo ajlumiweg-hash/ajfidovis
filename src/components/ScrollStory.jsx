@@ -119,6 +119,7 @@ function ScrollStory() {
             </p>
           </div>
         </div>
+        <div className="h-32"></div>
       </section>
 
     </div>
