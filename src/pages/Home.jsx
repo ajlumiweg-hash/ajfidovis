@@ -1,5 +1,6 @@
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
+import ScrollStory from "../components/ScrollStory";
 
 
 function Home() {
@@ -7,6 +8,7 @@ function Home() {
     <div className="bg-[#050816] min-h-screen">
       <Navbar />
       <Hero />
+      <ScrollStory />
     </div>
   );
 }
