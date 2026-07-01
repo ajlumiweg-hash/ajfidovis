@@ -76,43 +76,43 @@ function ScrollStory() {
         </video>
 
         <div className="absolute inset-0 bg-black/50"></div>
-        <div className="hidden lg:flex fixed left-10 top-1/2 -translate-y-1/2 z-20 flex-col gap-4">
+        <div className="hidden lg:flex fixed right-10 top-1/2 -translate-y-1/2 z-20 flex-col gap-2">
 
           {/* HERO */}
           <div
-            className={`transition-all duration-500 rounded-full ${
+            className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
               activeSection === "hero"
-                ? "w-1.5 h-12 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                : "w-[2px] h-8 bg-white/30"
+                ? "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
+                : "scale-x-100 bg-white/30 shadow-none"
             }`}
           />
 
           {/* PRODUCTS */}
           <div
-            className={`transition-all duration-500 rounded-full ${
+            className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
               activeSection === "products"
-                ? "w-1.5 h-12 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                : "w-[2px] h-8 bg-white/30"
+                ? "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
+                : "scale-x-100 bg-white/30 shadow-none"
             }`}
           />
 
-          {/* AJLUMIWEG */}
+          {/* ANIMATION */}
           <div
-            className={`transition-all duration-500 rounded-full ${
+            className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
               activeSection === "animation"
-                ? "w-1.5 h-12 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                : "w-[2px] h-8 bg-white/30"
+                ? "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
+                : "scale-x-100 bg-white/30 shadow-none"
             }`}
           />
 
-          {/* VISION */}
+          {/* FUTURE */}
           <div
-            className={`transition-all duration-500 rounded-full ${
+            className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
               activeSection === "future"
-                ? "w-1.5 h-12 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                : "w-[2px] h-8 bg-white/30"
+                ? "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
+                : "scale-x-100 bg-white/30 shadow-none"
             }`}
-          />
+          />        
 
         </div>
 
