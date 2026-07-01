@@ -3,8 +3,17 @@ import { motion } from "framer-motion";
 function Hero() {
   return (
     <section className="relative h-screen flex items-center justify-start overflow-hidden">
-     <div className="relative z-10 h-screen flex items-center w-full px-6 md:px-12 xl:px-24">     
-        <div className="w-full max-w-5xl">
+     <div className="relative z-10 h-screen flex items-center justify-center w-full px-6">     
+        <div className="w-full max-w-5xl text-center">
+
+          <motion.span
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 1 }}
+            className="inline-block text-cyan-400 uppercase tracking-[0.3em] text-sm mb-6"
+          >
+            AI • Software • Innovation
+          </motion.span>
 
           <motion.h1
             initial={{ opacity: 0, y: 100 }}
@@ -38,7 +47,7 @@ function Hero() {
               delay: 0.8,
               duration: 1,
             }}
-            className="text-gray-300 mt-6 max-w-xl leading-relaxed"
+            className="text-gray-300 mt-6 max-w-2xl mx-auto leading-relaxed"
             style={{
               fontSize: "clamp(1rem, 1.6vw, 1.9rem)",
             }}
@@ -55,7 +64,7 @@ function Hero() {
               delay: 1.2,
               duration: 1,
             }}
-            className="flex flex-col sm:flex-row gap-4 mt-10"
+            className="flex flex-col sm:flex-row gap-4 mt-10 justify-center"
           >
             <button
               className="bg-blue-600 hover:bg-blue-700 hover:scale-105 transition-all duration-300 rounded-full text-white font-semibold shadow-lg"

@@ -9,21 +9,21 @@ function About() {
       rounded-t-[50px]
       shadow-[0_-30px_100px_rgba(0,0,0,0.8)]
       min-h-screen
-      pt-20
+      pt-8 md:pt-12 xl:pt-20
       "
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
+      <div className="max-w-[1400px] mx-auto px-6 md:px-10 xl:px-16 py-12 md:py-16 xl:py-24">
 
-        <div className="grid lg:grid-cols-2 gap-20 items-center">
+        <div className="grid lg:grid-cols-[1.2fr_1fr] gap-16 xl:gap-24 items-center">
 
           {/* Left Content */}
-          <div>
+          <div className="max-w-3xl">
 
             <p className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
               About AJFIDOVIS
             </p>
 
-            <h2 className="text-5xl lg:text-7xl font-bold mt-6 leading-tight">
+            <h2 className="text-4xl md:text-5xl xl:text-7xl font-bold mt-6 leading-tight">
               Creating the
               <span className="block bg-gradient-to-r from-cyan-400 via-blue-400 to-purple-500 bg-clip-text text-transparent">
                 Future of Digital

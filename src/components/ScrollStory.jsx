@@ -8,6 +8,7 @@ import { useState, useEffect } from "react";
 function ScrollStory() {
 
   const [currentVideo, setCurrentVideo] = useState(heroVideo);
+  const [activeSection, setActiveSection] = useState("hero");
 
   useEffect(() => {
 
@@ -16,6 +17,7 @@ function ScrollStory() {
 
       if (scrollY < window.innerHeight / 2) {
         setCurrentVideo(heroVideo);
+        setActiveSection("hero");
       }
     };
 
@@ -32,14 +34,17 @@ function ScrollStory() {
 
           if (id === "products") {
             setCurrentVideo(productsVideo);
+            setActiveSection("products");
           }
 
           if (id === "animation") {
             setCurrentVideo(animationVideo);
+            setActiveSection("animation");
           }
 
           if (id === "future") {
             setCurrentVideo(futureVideo);
+            setActiveSection("future");
           }
         });
       },
@@ -71,52 +76,129 @@ function ScrollStory() {
         </video>
 
         <div className="absolute inset-0 bg-black/50"></div>
+        <div className="hidden lg:flex fixed left-10 top-1/2 -translate-y-1/2 z-20 flex-col gap-4">
+
+          {/* HERO */}
+          <div
+            className={`transition-all duration-500 rounded-full ${
+              activeSection === "hero"
+                ? "w-1.5 h-12 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
+                : "w-[2px] h-8 bg-white/30"
+            }`}
+          />
+
+          {/* PRODUCTS */}
+          <div
+            className={`transition-all duration-500 rounded-full ${
+              activeSection === "products"
+                ? "w-1.5 h-12 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
+                : "w-[2px] h-8 bg-white/30"
+            }`}
+          />
+
+          {/* AJLUMIWEG */}
+          <div
+            className={`transition-all duration-500 rounded-full ${
+              activeSection === "animation"
+                ? "w-1.5 h-12 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
+                : "w-[2px] h-8 bg-white/30"
+            }`}
+          />
+
+          {/* VISION */}
+          <div
+            className={`transition-all duration-500 rounded-full ${
+              activeSection === "future"
+                ? "w-1.5 h-12 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
+                : "w-[2px] h-8 bg-white/30"
+            }`}
+          />
+
+        </div>
+
       </div>
 
+
+      
+
       {/* Products */}
-      <section id="products" data-video className="relative h-screen snap-start">
+      <section id="products" data-video className="relative h-screen snap-start overflow-hidden">
+              
         <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="text-center max-w-4xl px-6">
-            <h2 className="text-6xl font-bold">
+          <div className="relative z-10 text-center max-w-4xl px-6">
+            <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
+              AI Solutions
+            </span>
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-4 leading-tight">
               Innovative Digital Products
             </h2>
 
-            <p className="mt-6 text-xl text-gray-300">
+            <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
               AI-powered applications, SaaS platforms, and enterprise
               products built to transform businesses.
             </p>
+            <div className="mt-10">
+              <button className="px-8 py-4 rounded-full bg-cyan-500 hover:bg-cyan-400 transition font-semibold">
+                Explore Products
+              </button>
+            </div>
           </div>
         </div>   
       </section>
 
       {/* Animation */}
-      <section id="animation" data-video className="relative h-screen snap-start">
+      <section id="animation" data-video className="relative h-screen snap-start overflow-hidden">
+     
         <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="text-center max-w-4xl px-6">
-            <h2 className="text-6xl font-bold">
-              Creative Animation Studio
+          <div className="relative z-10 text-center max-w-4xl px-6">
+            <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
+              AJLUMIWEG
+            </span>
+
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-4">
+              Animation & Digital Content
             </h2>
 
-            <p className="mt-6 text-xl text-gray-300">
-              Stunning 2D & 3D animations, motion graphics, visual
-              storytelling, and cinematic experiences.
+            <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              Creating short animations, visual stories,
+              motion graphics and creative digital content
+              through our AJLUMIWEG platform.
             </p>
+
+            <div className="mt-10">
+              <button className="px-8 py-4 rounded-full bg-cyan-500 hover:bg-cyan-400 transition">
+                View Content
+              </button>
+            </div>
           </div>
         </div>
       </section>
 
       {/* Future */}
-      <section id="future" data-video className="relative h-screen snap-start">
+      <section id="future" data-video className="relative h-screen snap-start overflow-hidden">
+         
         <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="text-center max-w-4xl px-6">
-            <h2 className="text-6xl font-bold">
-              Building The Future
+          <div className="relative z-10 text-center max-w-4xl px-6">
+            <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
+              Our Vision
+            </span>
+
+            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-4">
+              Exploring What's Next
             </h2>
 
-            <p className="mt-6 text-xl text-gray-300">
-              Exploring artificial intelligence, robotics, cloud
-              technologies, and next-generation innovations.
+            <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
+              We are continuously exploring emerging
+              technologies, creative ideas and innovative
+              digital solutions that can shape the future
+              of AJFIDOVIS.
             </p>
+
+            <div className="mt-10">
+              <button className="px-8 py-4 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition">
+                Our Vision
+              </button>
+            </div>
           </div>
         </div>
         <div className="h-32"></div>
