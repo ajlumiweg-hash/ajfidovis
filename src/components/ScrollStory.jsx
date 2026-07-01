@@ -3,6 +3,7 @@ import productsVideo from "../assets/videos/products.mp4";
 import animationVideo from "../assets/videos/animation.mp4";
 import futureVideo from "../assets/videos/future.mp4";
 import { useState, useEffect } from "react";
+import Hero from "../components/Hero";
 
 
 function ScrollStory() {
@@ -119,7 +120,8 @@ function ScrollStory() {
       </div>
 
 
-      
+      {/* HERO */}
+      <Hero />
 
       {/* Products */}
       <section id="products" data-video className="relative h-screen snap-start overflow-hidden">
@@ -175,7 +177,7 @@ function ScrollStory() {
       </section>
 
       {/* Future */}
-      <section id="future" data-video className="relative h-screen snap-start overflow-hidden">
+      <section id="future" data-video className="relative h-screen snap-start overflow-hidden ">
          
         <div className="relative z-10 h-full flex items-center justify-center">
           <div className="relative z-10 text-center max-w-4xl px-6">
@@ -201,7 +203,6 @@ function ScrollStory() {
             </div>
           </div>
         </div>
-        <div className="h-32"></div>
       </section>
 
     </div>

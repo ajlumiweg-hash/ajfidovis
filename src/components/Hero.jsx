@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 
 function Hero() {
   return (
-    <section className="relative h-screen flex items-center justify-start overflow-hidden">
+    <section id="hero" className="relative h-screen flex items-center justify-start overflow-hidden">
      <div className="relative z-10 h-screen flex items-center justify-center w-full px-6">     
         <div className="w-full max-w-5xl text-center">
 
