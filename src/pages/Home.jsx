@@ -4,11 +4,9 @@ import ScrollStory from "../components/ScrollStory";
 
 function Home() {
   return (
-    <div className="bg-[#050816] min-h-screen">
+    <div className="min-h-screen bg-transparent">
       <Navbar />
-
-        <ScrollStory />
-      
+      <ScrollStory />
     </div>
   );
 }

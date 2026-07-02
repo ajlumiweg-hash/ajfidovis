@@ -1,4 +1,4 @@
-import { motion, useMotionValue, useSpring } from "framer-motion";
+import { motion, useMotionValue, useSpring, useScroll, useTransform} from "framer-motion";
 
 const easing = [0.22, 1, 0.36, 1];
 
@@ -20,8 +20,45 @@ const defaultTransition = {
   ease: easing,
 };
 
-const glowClass =
-  "absolute left-1/2 top-1/2 -z-0 h-[500px] w-[500px] -translate-x-1/2 -translate-y-1/2 rounded-full bg-cyan-400/10 blur-[140px]";
+const headingAnimation = {
+  initial: { opacity: 0, y: 80 },
+  animate: { opacity: 1, y: 0 },
+};
+
+const buttonAnimation = {
+  initial: { opacity: 0, scale: 0.9 },
+  animate: { opacity: 1, scale: 1 },
+};
+
+const paragraphAnimation = {
+   initial:{
+      opacity:0,
+      y:30,
+      filter:"blur(10px)",
+      scale:0.98,
+   },
+
+   animate:{
+      opacity:1,
+      y:0,
+      filter:"blur(0px)",
+      scale:1,
+   },
+
+   transition:{
+      delay:1.1,
+      duration:1,
+      ease:easing,
+   }
+}
+
+const buttons = [
+{
+   title:"Explore Our Work",
+   className:"border border-white/30 text-white hover:border-white hover:bg-white hover:text-black",
+   delay:1.4,
+},
+];
 
 const fadeUp = {
   hidden: { opacity: 0, y: 40 },
@@ -52,11 +89,26 @@ function Hero() {
   });
 
   const handleMouseMove = (e) => {
-    const { innerWidth, innerHeight } = window;
+  const halfWidth = window.innerWidth / 2;
+  const halfHeight = window.innerHeight / 2;
 
-    mouseX.set((e.clientX - innerWidth / 2) / parallaxStrength);
-    mouseY.set((e.clientY - innerHeight / 2) / parallaxStrength);
+  mouseX.set((e.clientX - halfWidth) / parallaxStrength);
+  mouseY.set((e.clientY - halfHeight) / parallaxStrength);
   };
+
+  const { scrollYProgress } = useScroll();
+
+  const buttonX = useTransform(
+    scrollYProgress,
+    [0, 0.12],
+    [0, 900]
+  );
+
+  const buttonOpacity = useTransform(
+    scrollYProgress,
+    [0, 0.12],
+    [1, 0]
+  );
 
   return (
     <section
@@ -65,21 +117,6 @@ function Hero() {
       className="relative flex h-screen items-center justify-center overflow-hidden"
     >
 
-      {/* Floating Glow */}
-      <motion.div
-        style={{ x, y }}
-        animate={{
-          scale: [1, 1.15, 1],
-        }}
-        transition={{
-          scale: {
-            duration: 18,
-            repeat: Infinity,
-            ease: "easeInOut",
-          },
-        }}
-        className={glowClass}
-      />
 
       <div className="relative z-10 mx-auto w-full max-w-5xl px-6 text-center">
 
@@ -90,8 +127,7 @@ function Hero() {
         >
           {/* Line 1 */}
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
+            {...headingAnimation}
             transition={defaultTransition}
             className="font-light"
           >
@@ -138,8 +174,7 @@ function Hero() {
 
           {/* Line 3 */}
           <motion.div
-            initial={{ opacity: 0, y: 80 }}
-            animate={{ opacity: 1, y: 0 }}
+            {...headingAnimation}
             transition={{
               delay: 0.8,
               duration: 1,
@@ -153,23 +188,7 @@ function Hero() {
 
         {/* Description */}
         <motion.p
-          initial={{
-            opacity: 0,
-            y: 30,
-            filter: "blur(10px)",
-            scale: 0.98,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-            filter: "blur(0px)",
-            scale: 1,
-          }}
-          transition={{
-            delay: 1.1,
-            duration: 1,
-            ease: easing,
-          }}
+          {...paragraphAnimation}
           className="mx-auto mt-8 max-w-3xl text-white/75 leading-[1.9] tracking-[0.02em]"
           style = {paragraphSize}
         >
@@ -178,31 +197,65 @@ function Hero() {
           the future.
         </motion.p>
 
-        {/* Buttons */}
-        <div className="mt-10 flex flex-col justify-center gap-5 sm:flex-row">
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 1.2,
-              duration: 0.5,
-            }}
-            className={`${buttonClass} bg-cyan-500 text-white hover:bg-cyan-400 hover:shadow-[0_0_40px_rgba(34,211,238,0.35)]`}
-          >
-            Get Started
-          </motion.button>
+        {/* Button */}
+        <div className="mt-10 flex justify-center">
 
-          <motion.button
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              delay: 1.4,
-              duration: 0.5,
+          <motion.div
+            style={{
+              x: buttonX,
+              opacity: buttonOpacity,
             }}
-            className={`${buttonClass} border border-white/30 text-white hover:border-white hover:bg-white hover:text-black`}
           >
-            Explore Our Work
-          </motion.button>
+            <motion.button
+              initial={{
+                x: "-120vw",
+                opacity: 0,
+                rotate: -6,
+                scale: 0.9,
+                filter: "blur(8px)",
+              }}
+              animate={{
+                x: 0,
+                opacity: 1,
+                rotate: 0,
+                scale: 1,
+                filter: "blur(0px)",
+              }}
+              transition={{
+                delay: 1,
+                duration: 0.7,
+                ease: [0.19, 1, 0.22, 1],
+              }}
+              className="
+                relative
+                overflow-hidden
+                rounded-full
+                border
+                border-white/20
+                bg-white/10
+                backdrop-blur-xl
+
+                px-10
+                py-4
+
+                font-semibold
+                text-white
+
+                shadow-[0_20px_60px_rgba(0,0,0,.35)]
+
+                transition-all
+                duration-300
+
+                hover:scale-105
+                hover:bg-cyan-400/20
+                hover:border-cyan-300/40
+                hover:shadow-[0_0_40px_rgba(34,211,238,.35)]
+              "
+            >
+              Explore Our Work
+            </motion.button>
+          </motion.div>
+
         </div>
 
       </div>
