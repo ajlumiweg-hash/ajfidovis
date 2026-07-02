@@ -5,13 +5,51 @@ import futureVideo from "../assets/videos/future.mp4";
 import { useState, useEffect } from "react";
 import Hero from "../components/Hero";
 
+const videos = {
+  products: productsVideo,
+  animation: animationVideo,
+  future: futureVideo,
+};
+
 
 function ScrollStory() {
 
+  // state
   const [currentVideo, setCurrentVideo] = useState(heroVideo);
   const [activeSection, setActiveSection] = useState("hero");
+  const buttonClass =
+    "mt-10 px-8 py-4 rounded-full transition-all duration-300";
+  const activeIndicator =
+    "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]";
+
+  const inactiveIndicator =
+    "scale-x-100 bg-white/30 shadow-none";
+
+  const sections = [
+    {
+      id: "products",
+      text: "We build intelligent software that transforms businesses.",
+      button: "Learn More",
+      buttonClass: "bg-cyan-500 hover:bg-cyan-400",
+    },
+    {
+      id: "animation",
+      text: "We create digital stories that inspire audiences.",
+      button: "Learn More",
+      buttonClass: "bg-cyan-500 hover:bg-cyan-400",
+    },
+    {
+      id: "future",
+      text: "Our innovations give people new ways to connect.",
+      button: "Coming Soon",
+      buttonClass:
+        "border border-white/20 bg-white/10 hover:bg-white/20",
+    },
+  ];
 
 
+
+  // effects
   useEffect(() => {
 
     const handleScroll = () => {
@@ -24,7 +62,6 @@ function ScrollStory() {
     };
 
     window.addEventListener("scroll", handleScroll);
-
     const sections = document.querySelectorAll("[data-video]");
 
     const observer = new IntersectionObserver(
@@ -34,26 +71,18 @@ function ScrollStory() {
 
           const id = entry.target.id;
 
-          if (id === "products") {
-            setCurrentVideo(productsVideo);
-            setActiveSection("products");
-          }
+            if (videos[id]) {
+              setCurrentVideo(videos[id]);
+              setActiveSection(id);
+            }
 
-          if (id === "animation") {
-            setCurrentVideo(animationVideo);
-            setActiveSection("animation");
-          }
-
-          if (id === "future") {
-            setCurrentVideo(futureVideo);
-            setActiveSection("future");
-            
-          }
         });
       },
+
       {
         threshold: 0.6,
       }
+       
     );
 
     sections.forEach((section) => observer.observe(section));
@@ -79,44 +108,18 @@ function ScrollStory() {
         </video>
 
         <div className="absolute inset-0 bg-black/50"></div>
+
         <div className="hidden lg:flex fixed right-10 top-1/2 -translate-y-1/2 z-20 flex-col gap-2">
-
-          {/* HERO */}
-          <div
-            className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
-              activeSection === "hero"
-                ? "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                : "scale-x-100 bg-white/30 shadow-none"
-            }`}
-          />
-
-          {/* PRODUCTS */}
-          <div
-            className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
-              activeSection === "products"
-                ? "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                : "scale-x-100 bg-white/30 shadow-none"
-            }`}
-          />
-
-          {/* ANIMATION */}
-          <div
-            className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
-              activeSection === "animation"
-                ? "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                : "scale-x-100 bg-white/30 shadow-none"
-            }`}
-          />
-
-          {/* FUTURE */}
-          <div
-            className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
-              activeSection === "future"
-                ? "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]"
-                : "scale-x-100 bg-white/30 shadow-none"
-            }`}
-          />        
-
+          {["hero", "products", "animation", "future"].map((section) => (
+            <div
+              key={section}
+              className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
+                activeSection === section
+                  ? activeIndicator
+                  : inactiveIndicator
+              }`}
+            />
+          ))}       
         </div>
 
       </div>
@@ -124,87 +127,28 @@ function ScrollStory() {
       {/* HERO */}
       <Hero />
 
-      {/* Products */}
-      <section id="products" data-video className="relative h-screen">
-              
-        <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="z-10 text-center max-w-4xl px-6">
-            <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
-              AI Solutions
-            </span>
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-4 leading-tight">
-              Innovative Digital Products
-            </h2>
+      {sections.map((item) => (
+        <section
+          key={item.id}
+          id={item.id}
+          data-video
+          className="relative h-screen"
+        >
+          <div className="z-10 h-full flex items-center justify-center">
+            <div className="z-10 text-center max-w-4xl px-6">
+              <p className="text-3xl md:text-5xl lg:text-6xl font-light leading-tight">
+                {item.text}
+              </p>
 
-            <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-              AI-powered applications, SaaS platforms, and enterprise
-              products built to transform businesses.
-            </p>
-            <div className="mt-10">
-              <button className="px-8 py-4 rounded-full bg-cyan-500 hover:bg-cyan-400 transition font-semibold">
-                Explore Products
+              <button
+                className={`mt-10 px-8 py-4 rounded-full transition-all duration-300 ${item.buttonClass}`}
+              >
+                {item.button}
               </button>
             </div>
           </div>
-        </div>   
-      </section>
-
-      {/* Animation */}
-      <section id="animation" data-video className="relative h-screen">
-     
-        <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="z-10 text-center max-w-4xl px-6">
-            <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
-              AJLUMIWEG
-            </span>
-
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-4">
-              Animation & Digital Content
-            </h2>
-
-            <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-              Creating short animations, visual stories,
-              motion graphics and creative digital content
-              through our AJLUMIWEG platform.
-            </p>
-
-            <div className="mt-10">
-              <button className="px-8 py-4 rounded-full bg-cyan-500 hover:bg-cyan-400 transition">
-                View Content
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Future */}
-      <section id="future" data-video className="relative h-screen ">
-         
-        <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="z-10 text-center max-w-4xl px-6">
-            <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
-              Our Vision
-            </span>
-
-            <h2 className="text-5xl md:text-6xl lg:text-7xl font-bold mt-4">
-              Exploring What's Next
-            </h2>
-
-            <p className="mt-6 text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
-              We are continuously exploring emerging
-              technologies, creative ideas and innovative
-              digital solutions that can shape the future
-              of AJFIDOVIS.
-            </p>
-
-            <div className="mt-10">
-              <button className="px-8 py-4 rounded-full bg-white/10 border border-white/20 hover:bg-white/20 transition">
-                Our Vision
-              </button>
-            </div>
-          </div>
-        </div>
-      </section>
+        </section>
+      ))}
 
     </div>
   );
