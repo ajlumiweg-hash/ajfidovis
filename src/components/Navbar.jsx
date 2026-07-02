@@ -7,11 +7,10 @@ function Navbar() {
 
   const navLinks = [
     "Home",
-    "Solutions",
-    "Products",
+    "Who We Are",
+    "What We Do",
     "Technologies",
-    "Portfolio",
-    "About",
+    "Portfolio", 
     "Careers",
     "Contacts",
   ];

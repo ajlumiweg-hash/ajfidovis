@@ -58,7 +58,6 @@ function ScrollStory() {
   const [currentVideo, setCurrentVideo] = useState(heroVideo);
   const [activeSection, setActiveSection] = useState("hero");
 
-
   // effects
   // Observe page sections and update the active video + indicator while scrolling.
   useEffect(() => {
