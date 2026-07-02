@@ -2,8 +2,8 @@ import { motion } from "framer-motion";
 
 function Hero() {
   return (
-    <section id="hero" className="relative h-screen flex items-center justify-start overflow-hidden">
-     <div className="relative z-10 h-screen flex items-center justify-center w-full px-6">     
+    <section id="hero" className="relative h-screen flex items-center  overflow-hidden">
+     <div className=" z-10 h-screen flex items-center justify-center w-full px-6">     
         <div className="w-full max-w-5xl text-center">
 
           <motion.span
@@ -34,7 +34,7 @@ function Hero() {
                 delay: 0.5,
                 duration: 1,
               }}
-              className=" font-bold  bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-500 bg-clip-text text-transparent"
+              className=" font-bold bg-gradient-to-r from-blue-400 via-cyan-300 to-purple-500 bg-clip-text text-transparent"
             >
               Future
             </motion.span>

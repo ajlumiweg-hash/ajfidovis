@@ -11,6 +11,7 @@ function ScrollStory() {
   const [currentVideo, setCurrentVideo] = useState(heroVideo);
   const [activeSection, setActiveSection] = useState("hero");
 
+
   useEffect(() => {
 
     const handleScroll = () => {
@@ -46,6 +47,7 @@ function ScrollStory() {
           if (id === "future") {
             setCurrentVideo(futureVideo);
             setActiveSection("future");
+            
           }
         });
       },
@@ -63,8 +65,8 @@ function ScrollStory() {
   }, []);
 
   return (
-    <div className="relative text-white">
-      <div className="fixed inset-0 -z-0">
+    <div className="relative text-white ">
+      <div className="fixed inset-0 z-0">
         <video
           key={currentVideo}
           autoPlay
@@ -119,15 +121,14 @@ function ScrollStory() {
 
       </div>
 
-
       {/* HERO */}
       <Hero />
 
       {/* Products */}
-      <section id="products" data-video className="relative h-screen snap-start overflow-hidden">
+      <section id="products" data-video className="relative h-screen">
               
         <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="relative z-10 text-center max-w-4xl px-6">
+          <div className="z-10 text-center max-w-4xl px-6">
             <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
               AI Solutions
             </span>
@@ -149,10 +150,10 @@ function ScrollStory() {
       </section>
 
       {/* Animation */}
-      <section id="animation" data-video className="relative h-screen snap-start overflow-hidden">
+      <section id="animation" data-video className="relative h-screen">
      
         <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="relative z-10 text-center max-w-4xl px-6">
+          <div className="z-10 text-center max-w-4xl px-6">
             <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
               AJLUMIWEG
             </span>
@@ -177,10 +178,10 @@ function ScrollStory() {
       </section>
 
       {/* Future */}
-      <section id="future" data-video className="relative h-screen snap-start overflow-hidden ">
+      <section id="future" data-video className="relative h-screen ">
          
         <div className="relative z-10 h-full flex items-center justify-center">
-          <div className="relative z-10 text-center max-w-4xl px-6">
+          <div className="z-10 text-center max-w-4xl px-6">
             <span className="text-cyan-400 uppercase tracking-[0.3em] text-sm">
               Our Vision
             </span>
@@ -208,5 +209,6 @@ function ScrollStory() {
     </div>
   );
 }
+
 
 export default ScrollStory;
