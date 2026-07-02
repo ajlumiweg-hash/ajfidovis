@@ -5,56 +5,66 @@ import futureVideo from "../assets/videos/future.mp4";
 import { useState, useEffect } from "react";
 import Hero from "../components/Hero";
 
+// Static Data
 const videos = {
   products: productsVideo,
   animation: animationVideo,
   future: futureVideo,
 };
 
+const sections = [
+{
+  id: "products",
+  text: "We build intelligent software that transforms businesses.",
+  button: "Learn More",
+  buttonClass: "bg-cyan-500 hover:bg-cyan-400",
+},
+{
+  id: "animation",
+  text: "We create digital stories that inspire audiences.",
+  button: "Learn More",
+  buttonClass: "bg-cyan-500 hover:bg-cyan-400",
+},
+{
+  id: "future",
+  text: "Our innovations give people new ways to connect.",
+  button: "Coming Soon",
+  buttonClass:
+    "border border-white/20 bg-white/10 hover:bg-white/20",
+},
+];
 
+const buttonClass =
+  "mt-10 px-8 py-4 rounded-full transition-all duration-300";
+
+const activeIndicator =
+  "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]";
+
+const inactiveIndicator =
+  "scale-x-100 bg-white/30 shadow-none";
+
+const indicators = [
+  "hero",
+  "products",
+  "animation",
+  "future",
+];
+
+
+// Component
 function ScrollStory() {
 
   // state
   const [currentVideo, setCurrentVideo] = useState(heroVideo);
   const [activeSection, setActiveSection] = useState("hero");
-  const buttonClass =
-    "mt-10 px-8 py-4 rounded-full transition-all duration-300";
-  const activeIndicator =
-    "scale-x-3 bg-cyan-400 shadow-[0_0_12px_#22d3ee]";
-
-  const inactiveIndicator =
-    "scale-x-100 bg-white/30 shadow-none";
-
-  const sections = [
-    {
-      id: "products",
-      text: "We build intelligent software that transforms businesses.",
-      button: "Learn More",
-      buttonClass: "bg-cyan-500 hover:bg-cyan-400",
-    },
-    {
-      id: "animation",
-      text: "We create digital stories that inspire audiences.",
-      button: "Learn More",
-      buttonClass: "bg-cyan-500 hover:bg-cyan-400",
-    },
-    {
-      id: "future",
-      text: "Our innovations give people new ways to connect.",
-      button: "Coming Soon",
-      buttonClass:
-        "border border-white/20 bg-white/10 hover:bg-white/20",
-    },
-  ];
-
 
 
   // effects
+  // Observe page sections and update the active video + indicator while scrolling.
   useEffect(() => {
 
     const handleScroll = () => {
       const scrollY = window.scrollY;
-
       if (scrollY < window.innerHeight / 2) {
         setCurrentVideo(heroVideo);
         setActiveSection("hero");
@@ -62,7 +72,7 @@ function ScrollStory() {
     };
 
     window.addEventListener("scroll", handleScroll);
-    const sections = document.querySelectorAll("[data-video]");
+    const storySections = document.querySelectorAll("[data-video]");
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -85,14 +95,17 @@ function ScrollStory() {
        
     );
 
-    sections.forEach((section) => observer.observe(section));
+    storySections.forEach((section) => observer.observe(section));
 
+    // Cleanup
     return () => {
       observer.disconnect();
       window.removeEventListener("scroll", handleScroll);
     };
+
   }, []);
 
+  // Render
   return (
     <div className="relative text-white ">
       <div className="fixed inset-0 z-0">
@@ -110,7 +123,7 @@ function ScrollStory() {
         <div className="absolute inset-0 bg-black/50"></div>
 
         <div className="hidden lg:flex fixed right-10 top-1/2 -translate-y-1/2 z-20 flex-col gap-2">
-          {["hero", "products", "animation", "future"].map((section) => (
+          {indicators.map((section) => (
             <div
               key={section}
               className={`h-4 w-[2px] rounded-full transition-all duration-500 origin-center ${
@@ -141,7 +154,7 @@ function ScrollStory() {
               </p>
 
               <button
-                className={`mt-10 px-8 py-4 rounded-full transition-all duration-300 ${item.buttonClass}`}
+                className={`${buttonClass} ${item.buttonClass}`}
               >
                 {item.button}
               </button>
@@ -154,5 +167,5 @@ function ScrollStory() {
   );
 }
 
-
+// Export
 export default ScrollStory;
